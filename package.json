@@ -1,34 +1,28 @@
 {
   "name": "heroapp",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "Consumo de superhero API",
+  "main": "index.js",
+  "author": "Renny Belandria",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "start-proxy": "node proxy-server.js"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
     "@reduxjs/toolkit": "^1.9.5",
+    "@vitejs/plugin-react": "^4.0.3",
+    "@vitejs/plugin-react-refresh": "^1.3.6",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "cors-anywhere": "^0.4.4",
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
-    "react-router-dom": "^6.14.1",
     "redux": "^4.2.1",
-    "redux-thunk": "^2.4.2"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
-    "@vitejs/plugin-react": "^4.0.1",
-    "@vitejs/plugin-react-refresh": "^1.3.6",
-    "eslint": "^8.44.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.1",
-    "vite": "^4.4.0"
+    "vite": "^4.4.4"
   }
 }

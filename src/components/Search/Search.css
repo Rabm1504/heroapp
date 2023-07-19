@@ -1,0 +1,19 @@
+/* Estilos para el componente Search */
+.search-container {
+    margin-bottom: 10px;
+  }
+  
+  .search-input {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .search-button {
+    padding: 5px 10px;
+  }
+  
+  /* Estilos para el componente MainComponent */
+  .main-component {
+    margin-bottom: 20px;
+  }
+  

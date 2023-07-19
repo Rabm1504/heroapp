@@ -1,0 +1,3 @@
+# Configurar saltos de línea para package-lock.json y package.json
+package-lock.json eol=lf
+package.json eol=lf

@@ -1,48 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSuperheroApi } from '../api/index.jsx';
+import FilterBySkills from './Search/FilterBySkills.jsx';
+import FilterByAppearance from './Search/FilterByAppearance.jsx';
+import MainComponent from './Search/MainComponent.jsx';
+import SortAlphabetically from './Search/SortAlphabetically.jsx';
 import Search from './Search/Search.jsx';
-import FilterByAppearance from './Search/FilterByAppereance';
-import FilterBySkills from './Search/FilterBySkills';
-import SortAlphabetically from './Search/SortAlphabetically';
-import Superheroes from './Heroes/Heroes';
-import fetchHeroes from '../api/index.js';
 
-/**
- * El componente App es el componente principal de la aplicación.
- * Contiene el estado y la lógica principal de la búsqueda y filtrado de superhéroes.
- */
 const App = () => {
-  const [superheroes, setSuperheroes] = useState([]);
-  const [filteredSuperheroes, setFilteredSuperheroes] = useState([]);
+  const dispatch = useDispatch();
+  const { getAllSuperheroes } = useSuperheroApi();
 
   useEffect(() => {
-    const fetchSuperheroesData = async () => {
-      const data = await fetchHeroes();
-      setSuperheroes(data);
-      setFilteredSuperheroes(data);
-    };
-
-    fetchSuperheroesData();
-  }, []);
-
-  const handleSearch = async (searchTerm, gender) => {
-    const searchedSuperheroes = superheroes.filter(superhero =>
-      superhero.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-    );
-
-    const filteredSuperheroes = searchedSuperheroes.filter(superhero =>
-      superhero.gender.toLowerCase().includes(gender.toLowerCase())
-    );
-
-    setFilteredSuperheroes(filteredSuperheroes);
-  };
+    // Obtener todos los superhéroes al cargar la aplicación
+    getAllSuperheroes(''); // Pasamos un string vacío para obtener todos los nombres
+  }, [dispatch, getAllSuperheroes]);
 
   return (
     <div>
-      <Search handleSearch={handleSearch} />
-      <FilterByAppearance superheroes={superheroes} setSuperheroes={setFilteredSuperheroes} />
-      <FilterBySkills superheroes={superheroes} setSuperheroes={setFilteredSuperheroes} />
-      <SortAlphabetically superheroes={filteredSuperheroes} setSuperheroes={setFilteredSuperheroes} />
-      <Superheroes superheroes={filteredSuperheroes} />
+      <h1>Superhero App</h1>
+      <div className="app-container">
+        <div className="sidebar">
+          {/* Componente para buscar por nombre */}
+          <Search />
+          {/* Componente para filtrar por habilidades */}
+          <FilterBySkills />
+          {/* Componente para filtrar por apariencia */}
+          <FilterByAppearance />
+        </div>
+        <div className="main-content">
+          {/* Componente para mostrar la lista de superhéroes */}
+          <MainComponent />
+          {/* Componente para buscar por orden alfabético */}
+          <SortAlphabetically />
+        </div>
+      </div>
     </div>
   );
 };
